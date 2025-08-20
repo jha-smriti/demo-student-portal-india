@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Student Portal - Indian Higher Education Intelligence</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar__brand">
+                <h1>🎓 AI Student Portal</h1>
+                <span class="badge">Powered by ML</span>
+            </div>
+            <div class="navbar__controls">
+                <button class="btn btn--outline btn--sm" id="themeToggle">🌙 Dark</button>
+                <button class="btn btn--primary btn--sm" id="aiChatToggle">🤖 AI Assistant</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <section class="dashboard" id="dashboard">
+                <div class="dashboard__header">
+                    <h2>AI-Powered Education Dashboard</h2>
+                    <p class="text-secondary">Real-time insights into Indian higher education using advanced ML algorithms</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card__icon">👥</div>
+                        <div class="stat-card__content">
+                            <h3 id="totalStudents">34.1M</h3>
+                            <p>Bachelor Students</p>
+                            <span class="trend trend--up">+12% this year</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card__icon">🏫</div>
+                        <div class="stat-card__content">
+                            <h3 id="totalInstitutions">58,643</h3>
+                            <p>Colleges & Universities</p>
+                            <span class="trend trend--up">+5% growth</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card__icon">📊</div>
+                        <div class="stat-card__content">
+                            <h3 id="enrollmentRatio">28.4%</h3>
+                            <p>Gross Enrollment Ratio</p>
+                            <span class="trend trend--up">Target: 50%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card__icon">🎯</div>
+                        <div class="stat-card__content">
+                            <h3 id="aiAccuracy">94%</h3>
+                            <p>AI Prediction Accuracy</p>
+                            <span class="trend trend--up">ML Enhanced</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h4>State-wise Student Distribution</h4>
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="stateChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <h4>ML Algorithm Performance</h4>
+                        <div style="position: relative; height: 300px;">
+                            <canvas id="mlChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navigation Tabs -->
+            <div class="tab-navigation">
+                <button class="tab-btn tab-btn--active" data-tab="students">👨‍🎓 Students</button>
+                <button class="tab-btn" data-tab="institutions">🏛️ Institutions</button>
+                <button class="tab-btn" data-tab="analytics">📈 Analytics</button>
+                <button class="tab-btn" data-tab="ai-features">🤖 AI Features</button>
+            </div>
+
+            <!-- Students Section -->
+            <section class="content-section content-section--active" id="students">
+                <div class="section-header">
+                    <h2>AI-Powered Student Discovery</h2>
+                    <p>Intelligent search with ML-based recommendations and predictive insights</p>
+                </div>
+
+                <!-- Search Interface -->
+                <div class="search-interface">
+                    <div class="search-bar">
+                        <input type="text" id="studentSearch" class="form-control" placeholder="🔍 Search students by name, course, or interests... (AI-powered semantic search)">
+                        <button class="btn btn--primary" id="searchBtn">Search</button>
+                    </div>
+                    
+                    <div class="filters">
+                        <select id="stateFilter" class="form-control">
+                            <option value="">All States</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                        </select>
+                        
+                        <select id="courseFilter" class="form-control">
+                            <option value="">All Courses</option>
+                            <option value="Computer Science Engineering">Computer Science</option>
+                            <option value="Electronics and Communication">Electronics</option>
+                            <option value="Mechanical Engineering">Mechanical</option>
+                            <option value="Biotechnology">Biotechnology</option>
+                            <option value="Civil Engineering">Civil</option>
+                            <option value="Chemical Engineering">Chemical</option>
+                            <option value="Aerospace Engineering">Aerospace</option>
+                            <option value="Information Technology">Information Technology</option>
+                        </select>
+                        
+                        <select id="yearFilter" class="form-control">
+                            <option value="">All Years</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                    
+                    <div class="ai-suggestions">
+                        <p><strong>AI Suggestions:</strong></p>
+                        <div class="suggestion-tags" id="suggestionTags">
+                            <span class="tag" data-search="high gpa">High Performers</span>
+                            <span class="tag" data-search="AI ML">AI/ML Enthusiasts</span>
+                            <span class="tag" data-search="IIT">IIT Students</span>
+                            <span class="tag" data-search="research">Research Oriented</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student Cards -->
+                <div class="students-grid" id="studentsGrid">
+                    <!-- Student cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Institutions Section -->
+            <section class="content-section" id="institutions">
+                <div class="section-header">
+                    <h2>Institution Intelligence Hub</h2>
+                    <p>AI-powered university rankings and smart matching algorithms</p>
+                </div>
+                
+                <div class="institutions-grid" id="institutionsGrid">
+                    <!-- Institution cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section class="content-section" id="analytics">
+                <div class="section-header">
+                    <h2>ML Analytics Center</h2>
+                    <p>Advanced machine learning insights and predictive models</p>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="chart-container">
+                        <h4>Enrollment Trends Prediction</h4>
+                        <div style="position: relative; height: 400px;">
+                            <canvas id="trendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <h4>Career Success Probability</h4>
+                        <div style="position: relative; height: 400px;">
+                            <canvas id="successChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ml-models">
+                    <h3>Active ML Models</h3>
+                    <div class="models-grid" id="modelsGrid">
+                        <!-- ML models will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Features Section -->
+            <section class="content-section" id="ai-features">
+                <div class="section-header">
+                    <h2>Agentic AI Capabilities</h2>
+                    <p>Autonomous AI systems for intelligent decision making and recommendations</p>
+                </div>
+                
+                <div class="ai-features-grid">
+                    <div class="feature-card">
+                        <div class="feature-card__icon">🧠</div>
+                        <h4>Neural Network Predictions</h4>
+                        <p>Deep learning models for student success prediction with 94% accuracy</p>
+                        <div class="feature-metrics">
+                            <span class="metric">Accuracy: 94%</span>
+                            <span class="metric">Precision: 91%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-card__icon">🎯</div>
+                        <h4>Smart Recommendations</h4>
+                        <p>AI-driven course and career suggestions based on student profiles and market trends</p>
+                        <div class="feature-metrics">
+                            <span class="metric">Match Rate: 89%</span>
+                            <span class="metric">Satisfaction: 92%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-card__icon">📊</div>
+                        <h4>Predictive Analytics</h4>
+                        <p>Real-time forecasting of enrollment trends and institutional performance</p>
+                        <div class="feature-metrics">
+                            <span class="metric">Forecast Horizon: 5 years</span>
+                            <span class="metric">Reliability: 87%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-card__icon">🔍</div>
+                        <h4>Semantic Search</h4>
+                        <p>Natural language processing for intelligent content discovery and matching</p>
+                        <div class="feature-metrics">
+                            <span class="metric">Response Time: <200ms</span>
+                            <span class="metric">Relevance: 96%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- AI Chat Modal -->
+    <div class="modal hidden" id="aiChatModal">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3>🤖 AI Education Assistant</h3>
+                <button class="modal__close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message message--ai">
+                            <div class="message__avatar">🤖</div>
+                            <div class="message__content">
+                                <p>Hello! I'm your AI assistant for Indian higher education. I can help you find information about students, institutions, courses, and provide personalized recommendations. What would you like to know?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" class="form-control" placeholder="Ask me anything about students, institutions, or careers...">
+                        <button class="btn btn--primary" id="sendMessage">Send</button>
+                    </div>
+                    <div class="chat-suggestions">
+                        <p><strong>Try asking:</strong></p>
+                        <div class="suggestion-buttons">
+                            <button class="suggestion-btn" data-question="What are the top engineering colleges in India?">Top Engineering Colleges</button>
+                            <button class="suggestion-btn" data-question="Show me students interested in AI and machine learning">AI/ML Students</button>
+                            <button class="suggestion-btn" data-question="What are the career prospects for biotechnology students?">Biotech Careers</button>
+                            <button class="suggestion-btn" data-question="Compare admission rates of IITs vs NITs">IIT vs NIT Comparison</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Profile Modal -->
+    <div class="modal hidden" id="studentModal">
+        <div class="modal__overlay" id="studentModalOverlay"></div>
+        <div class="modal__content modal__content--large">
+            <div class="modal__header">
+                <h3 id="studentModalTitle">Student Profile</h3>
+                <button class="modal__close" id="studentModalClose">&times;</button>
+            </div>
+            <div class="modal__body" id="studentModalBody">
+                <!-- Student profile content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
